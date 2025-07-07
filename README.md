@@ -1,1 +1,6 @@
-# UniUFC
+# TR - BD 2025.1 - UNIUFC
+
+## EQUIPE 9
+- 569944, FRANCISCO ANTONIO PAIVA DE SOUSA, fcoantoniops@alu.ufc.br
+- 495228, RENATO FERREIRA GOMES RODRIGUES, renatofgomesr@alu.ufc.br
+- 555616, VICTOR EDUARDO PITA CAMPOS, victorcampos@alu.ufc.br
