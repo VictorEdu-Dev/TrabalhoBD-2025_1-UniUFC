@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-uni-ufc-model.mwb.bak
+src/main/resources/diagrams/uni-ufc-model.mwb.bak
