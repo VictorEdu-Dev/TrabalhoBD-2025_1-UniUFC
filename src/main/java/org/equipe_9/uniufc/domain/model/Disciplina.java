@@ -26,7 +26,7 @@ public class Disciplina extends CommonData {
     @Column(length = 10, unique = true)
     private String codigo;
 
-    @Column(length = 200)
+    @Column(length = 500)
     private String ementa;
 
     private Integer creditos;
@@ -45,13 +45,13 @@ public class Disciplina extends CommonData {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "curso_id", nullable = false)
+    @JoinColumn(name = "curso_id")
     private Curso curso;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "professor_primary_id", nullable = false)
+    @JoinColumn(name = "professor_primary_id")
     private Professor professorPrimary;
 
     @ToString.Exclude
