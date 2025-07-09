@@ -3,6 +3,8 @@ package org.equipe_9.uniufc.domain.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.equipe_9.uniufc.domain.CommonData;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -36,6 +38,24 @@ public class Professor extends CommonData {
     @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "emails_professor",
             joinColumns = @JoinColumn(name = "professor_id"))
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private Set<String> emails = new HashSet<>();
+
+
+    @ToString.Exclude
+    @ElementCollection(fetch = FetchType.LAZY)
+    @CollectionTable(name = "telefones_professor",
+        joinColumns = @JoinColumn(name = "professor_id"))
+    @Column(name = "telefone")
+    private Set<String> telefones = new HashSet<>();
+
+    @ToString.Exclude
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
+
+    @ToString.Exclude
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "departamento_id")
+    private Departamento departamento;
 }
