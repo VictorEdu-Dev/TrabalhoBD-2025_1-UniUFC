@@ -29,7 +29,7 @@ public class Curso extends CommonData {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "departamento_id", nullable = false)
+    @JoinColumn(name = "departamento_id")
     private Departamento departamento;
 
 }
