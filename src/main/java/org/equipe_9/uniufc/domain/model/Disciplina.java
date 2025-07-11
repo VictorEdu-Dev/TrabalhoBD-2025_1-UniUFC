@@ -31,7 +31,8 @@ public class Disciplina extends CommonData {
 
     private Integer creditos;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
     private TipoDisciplina tipo;
 
     @ToString.Exclude
@@ -39,24 +40,20 @@ public class Disciplina extends CommonData {
     @JoinTable(name = "disciplina_prerequisito",
             joinColumns = @JoinColumn(name = "disciplina_requerente_id"),
             inverseJoinColumns = @JoinColumn(name = "disciplina_prerequisito_id"))
-    @Fetch(FetchMode.SELECT)
     private List<Disciplina> prerequisito;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "curso_id")
     private Curso curso;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "professor_primary_id")
     private Professor professorPrimary;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.JOIN)
     @JoinColumn(name = "professor_secondary_id")
     private Professor professorSecondary;
 
