@@ -3,12 +3,9 @@ package org.equipe_9.uniufc.domain.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.equipe_9.uniufc.domain.CommonData;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Objects;
 
 @ToString
 @Getter
@@ -18,6 +15,9 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity(name = "aluno_has_disciplinas")
 public class AlunoHasDisciplina extends CommonData {
+    @Transient
+    private Long Id;
+    
     @EmbeddedId
     private AlunoDisciplinaId id = new AlunoDisciplinaId();
 
@@ -38,9 +38,6 @@ public class AlunoHasDisciplina extends CommonData {
     private BigDecimal mediaFinal;
 
     private Integer frequencia;
-
-    @Transient
-    private Long Id;
 
     @Getter
     @Setter
