@@ -52,9 +52,7 @@ INSERT INTO emails_professor VALUES (5, 'joseroberto@gmail.com');
 INSERT INTO emails_professor VALUES (6, 'aguiardonato@ufc.br');
 INSERT INTO emails_professor VALUES (7, 'jarbas_joaci@yahoo.com.br');
 
-
-
-
+-- Telefones dos professores
 INSERT INTO telefones_professor VALUES (1, '(88)99999-1111');
 INSERT INTO telefones_professor VALUES (1, '(88)99999-1112');
 INSERT INTO telefones_professor VALUES (2, '(88)99999-2222');
