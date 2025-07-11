@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS disciplina (
     curso_id BIGINT,
     professor_primary_id BIGINT,
     professor_secondary_id BIGINT,
-    version BIGINT DEFAULT 0,
+    version BIGINT DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS disciplina_prerequisito (
