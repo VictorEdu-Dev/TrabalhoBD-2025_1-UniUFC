@@ -22,10 +22,11 @@ public class Usuario extends CommonData {
     @Column(length = 50, unique = true, nullable = false)
     private String login;
 
-    @Column(length = 15, nullable = false)
+    @Column(length = 60, nullable = false)
     private String senha;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
     private Regra regra;
 
     public enum Regra {
