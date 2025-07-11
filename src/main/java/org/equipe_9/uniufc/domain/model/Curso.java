@@ -3,8 +3,6 @@ package org.equipe_9.uniufc.domain.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.equipe_9.uniufc.domain.CommonData;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Getter
 @Setter
@@ -28,8 +26,6 @@ public class Curso extends CommonData {
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
-    @Fetch(FetchMode.JOIN)
-    @JoinColumn(name = "departamento_id")
+    @JoinColumn(name = "departamento_id", nullable = false)
     private Departamento departamento;
-
 }
