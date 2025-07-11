@@ -20,5 +20,5 @@ public class Departamento extends CommonData {
     private String nome;
 
     @Column(length = 32, unique = true)
-    public String codigo;
+    private String codigo;
 }
