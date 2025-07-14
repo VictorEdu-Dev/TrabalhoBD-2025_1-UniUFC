@@ -48,14 +48,11 @@ public class Disciplina extends CommonData {
     private Curso curso;
 
     @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "professor_primary_id")
-    private Professor professorPrimary;
-
-    @ToString.Exclude
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "professor_secondary_id")
-    private Professor professorSecondary;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "disciplina_has_professores",
+            joinColumns = @JoinColumn(name = "disciplina_id"),
+            inverseJoinColumns = @JoinColumn(name = "professor_id"))
+    private List<Professor> professor;
 
     public enum TipoDisciplina {
         OBRIGATORIA,
