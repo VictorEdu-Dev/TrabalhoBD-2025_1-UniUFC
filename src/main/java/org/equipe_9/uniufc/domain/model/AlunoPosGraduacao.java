@@ -13,9 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "aluno_pos_graduacao")
-@Table(name = "alunos_pos_graduacao")
 @PrimaryKeyJoinColumn(name = "aluno_id")
-@DiscriminatorValue("POS_GRADUACAO")
 public final class AlunoPosGraduacao extends Aluno {
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
