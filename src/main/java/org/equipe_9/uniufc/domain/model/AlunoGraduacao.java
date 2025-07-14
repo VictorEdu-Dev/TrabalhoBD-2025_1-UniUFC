@@ -12,9 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "aluno_graduacao")
-@Table(name = "alunos_graduacao")
 @PrimaryKeyJoinColumn(name = "aluno_id")
-@DiscriminatorValue("GRADUACAO")
 public final class AlunoGraduacao extends Aluno {
     @Column(columnDefinition = "datetime")
     private LocalDateTime dataIngresso;
