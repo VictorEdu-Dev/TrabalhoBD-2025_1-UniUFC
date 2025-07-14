@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public abstract class CommonData implements Serializable {
     public abstract Long getId();
     @Version
-    protected Long version;
+    protected LocalDateTime version;
 
     @Override
     public final boolean equals(Object o) {
