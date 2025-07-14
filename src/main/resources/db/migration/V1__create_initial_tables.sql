@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS departamento (
     id BIGINT NOT NULL AUTO_INCREMENT,
     nome VARCHAR(200),
     codigo VARCHAR(32) UNIQUE,
-    version BIGINT DEFAULT 0,
+    version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS curso (
     nome VARCHAR(200),
     creditos INT,
     departamento_id BIGINT NOT NULL,
-    version BIGINT DEFAULT 0,
+    version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
@@ -30,21 +30,20 @@ CREATE TABLE IF NOT EXISTS usuario (
     login VARCHAR(50) NOT NULL UNIQUE,
     senha VARCHAR(60) NOT NULL,
     regra VARCHAR(20),
-    version BIGINT DEFAULT 0,
+    version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (id)
 );
 
 -- Cria professor
 CREATE TABLE IF NOT EXISTS professor (
-    id BIGINT NOT NULL AUTO_INCREMENT,
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
     siape VARCHAR(10) NOT NULL UNIQUE,
     full_name VARCHAR(200),
     dataNascimento DATETIME,
     dataIngresso DATETIME,
     usuario_id BIGINT NOT NULL,
     departamento_id BIGINT,
-    version BIGINT DEFAULT 0,
-    PRIMARY KEY (id)
+    version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 -- Adiciona as chaves estrangeiras para usuario e departamento
@@ -83,13 +82,13 @@ CREATE TABLE IF NOT EXISTS disciplina (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(200),
     codigo VARCHAR(10) UNIQUE,
-    ementa VARCHAR(500),
+    ementa VARCHAR(1000),
     creditos INT,
     tipo VARCHAR(20),
     curso_id BIGINT,
     professor_primary_id BIGINT,
     professor_secondary_id BIGINT,
-    version BIGINT DEFAULT 0
+    version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS disciplina_prerequisito (
@@ -122,18 +121,19 @@ CREATE TABLE IF NOT EXISTS alunos (
     endereco VARCHAR(500),
     curso_id BIGINT,
     usuario_id BIGINT NOT NULL,
-    version BIGINT DEFAULT 0,
-    tipo_aluno VARCHAR(31)
+    version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS alunos_graduacao (
+CREATE TABLE IF NOT EXISTS aluno_graduacao (
     aluno_id BIGINT PRIMARY KEY,
-    data_ingresso DATETIME
+    data_ingresso DATETIME,
+    version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE IF NOT EXISTS alunos_pos_graduacao (
+CREATE TABLE IF NOT EXISTS aluno_pos_graduacao (
     aluno_id BIGINT PRIMARY KEY,
-    professor_orientador_id BIGINT NOT NULL
+    professor_orientador_id BIGINT NOT NULL,
+    version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS pg_formacao_basica (
@@ -145,6 +145,9 @@ CREATE TABLE IF NOT EXISTS pg_formacao_basica (
 CREATE TABLE IF NOT EXISTS aluno_has_disciplinas (
     aluno_id BIGINT NOT NULL,
     disciplina_id BIGINT NOT NULL,
+    media_final DECIMAL(4,2) DEFAULT 0.00,
+    frequencia DECIMAL(4,2) DEFAULT 0.00,
+    version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (aluno_id, disciplina_id)
 );
 
@@ -160,17 +163,17 @@ ALTER TABLE alunos
 ALTER TABLE alunos
     ADD CONSTRAINT fk_aluno_usuario FOREIGN KEY (usuario_id) REFERENCES usuario(id);
 
-ALTER TABLE alunos_graduacao
+ALTER TABLE aluno_graduacao
     ADD CONSTRAINT fk_graduacao_aluno FOREIGN KEY (aluno_id) REFERENCES alunos(id);
 
-ALTER TABLE alunos_pos_graduacao
+ALTER TABLE aluno_pos_graduacao
     ADD CONSTRAINT fk_pos_aluno FOREIGN KEY (aluno_id) REFERENCES alunos(id);
 
-ALTER TABLE alunos_pos_graduacao
+ALTER TABLE aluno_pos_graduacao
     ADD CONSTRAINT fk_pos_professor FOREIGN KEY (professor_orientador_id) REFERENCES professor(id);
 
 ALTER TABLE pg_formacao_basica
-    ADD CONSTRAINT fk_pg_aluno FOREIGN KEY (aluno_pos_graduacao_id) REFERENCES alunos_pos_graduacao(aluno_id);
+    ADD CONSTRAINT fk_pg_aluno FOREIGN KEY (aluno_pos_graduacao_id) REFERENCES aluno_pos_graduacao(aluno_id);
 
 ALTER TABLE pg_formacao_basica
     ADD CONSTRAINT fk_pg_curso FOREIGN KEY (curso_id) REFERENCES curso(id);
