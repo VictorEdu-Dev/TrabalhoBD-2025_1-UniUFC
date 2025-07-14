@@ -86,8 +86,6 @@ CREATE TABLE IF NOT EXISTS disciplina (
     creditos INT,
     tipo VARCHAR(20),
     curso_id BIGINT,
-    professor_primary_id BIGINT,
-    professor_secondary_id BIGINT,
     version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
@@ -100,18 +98,38 @@ CREATE TABLE IF NOT EXISTS disciplina_prerequisito (
 ALTER TABLE disciplina
     ADD CONSTRAINT fk_disciplina_curso FOREIGN KEY (curso_id) REFERENCES curso(id);
 
-ALTER TABLE disciplina
-    ADD CONSTRAINT fk_disciplina_professor_primary FOREIGN KEY (professor_primary_id) REFERENCES professor(id);
-
-ALTER TABLE disciplina
-    ADD CONSTRAINT fk_disciplina_professor_secondary FOREIGN KEY (professor_secondary_id) REFERENCES professor(id);
-
 ALTER TABLE disciplina_prerequisito
     ADD CONSTRAINT fk_dp_requerente FOREIGN KEY (disciplina_requerente_id) REFERENCES disciplina(id);
 
 ALTER TABLE disciplina_prerequisito
     ADD CONSTRAINT fk_dp_prerequisito FOREIGN KEY (disciplina_prerequisito_id) REFERENCES disciplina(id);
 
+CREATE TABLE IF NOT EXISTS disciplina_has_professores (
+    disciplina_id BIGINT NOT NULL,
+    professor_id BIGINT NOT NULL,
+    PRIMARY KEY (disciplina_id, professor_id)
+);
+
+ALTER TABLE disciplina_has_professores
+    ADD CONSTRAINT fk_professor_has_disciplina_professor FOREIGN KEY (professor_id) REFERENCES professor(id),
+    ADD CONSTRAINT fk_professor_has_disciplina_disciplina FOREIGN KEY (disciplina_id) REFERENCES disciplina(id);
+
+DELIMITER !
+CREATE TRIGGER trg_disciplina_has_professores
+    BEFORE INSERT ON disciplina_has_professores
+    FOR EACH ROW
+BEGIN
+    DECLARE v_count INT;
+
+    SELECT COUNT(*) INTO v_count
+    FROM disciplina_has_professores
+    WHERE disciplina_id = NEW.disciplina_id;
+    IF v_count >= 2 THEN
+        SIGNAL SQLSTATE '45000'
+            SET MESSAGE_TEXT = 'Já há dois professores associados a esta disciplina.';
+    END IF;
+END!
+DELIMITER ;
 
 -- Cria aluno
 CREATE TABLE IF NOT EXISTS alunos (
