@@ -39,12 +39,8 @@ public class Aluno extends CommonData {
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
-    @ToString.Exclude
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "aluno_has_disciplinas",
-            joinColumns = @JoinColumn(name = "aluno_id"),
-            inverseJoinColumns = @JoinColumn(name = "disciplina_id"))
-    private List<Disciplina> disciplinas;
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<AlunoHasDisciplina> disciplinas;
 
     @ToString.Exclude
     @ElementCollection(fetch = FetchType.LAZY)
