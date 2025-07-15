@@ -40,7 +40,7 @@ public class Disciplina extends CommonData {
     @JoinTable(name = "disciplina_prerequisito",
             joinColumns = @JoinColumn(name = "disciplina_requerente_id"),
             inverseJoinColumns = @JoinColumn(name = "disciplina_prerequisito_id"))
-    private List<Disciplina> prerequisito;
+    private List<Disciplina> preRequisito;
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
@@ -52,7 +52,7 @@ public class Disciplina extends CommonData {
     @JoinTable(name = "disciplina_has_professores",
             joinColumns = @JoinColumn(name = "disciplina_id"),
             inverseJoinColumns = @JoinColumn(name = "professor_id"))
-    private List<Professor> professor;
+    private List<Professor> professores;
 
     public enum TipoDisciplina {
         OBRIGATORIA,
