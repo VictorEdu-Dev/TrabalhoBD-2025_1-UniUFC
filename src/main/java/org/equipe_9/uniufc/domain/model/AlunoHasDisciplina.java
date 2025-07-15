@@ -19,7 +19,7 @@ public class AlunoHasDisciplina extends CommonData {
     private Long Id;
     
     @EmbeddedId
-    private AlunoDisciplinaId id = new AlunoDisciplinaId();
+    private AlunoDisciplinaId ids = new AlunoDisciplinaId();
 
     @ToString.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
@@ -37,7 +37,8 @@ public class AlunoHasDisciplina extends CommonData {
     @Column(precision = 4, scale = 2)
     private BigDecimal mediaFinal;
 
-    private Integer frequencia;
+    @Column(precision = 4, scale = 2)
+    private BigDecimal frequencia;
 
     @Getter
     @Setter
