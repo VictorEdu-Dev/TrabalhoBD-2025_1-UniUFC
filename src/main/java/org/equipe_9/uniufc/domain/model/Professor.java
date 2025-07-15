@@ -3,8 +3,6 @@ package org.equipe_9.uniufc.domain.model;
 import jakarta.persistence.*;
 import lombok.*;
 import org.equipe_9.uniufc.domain.CommonData;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
