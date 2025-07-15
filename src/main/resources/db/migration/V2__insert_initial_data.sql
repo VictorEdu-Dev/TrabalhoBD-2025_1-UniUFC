@@ -52,39 +52,39 @@ INSERT INTO usuario (id, nome, login, senha, regra) VALUES (40, 'Michael Faraday
 INSERT INTO usuario (id, nome, login, senha, regra) VALUES (41, 'Richard Feynman', 'richardfeynman', '123456', 'ALUNO');
 
 -- Professor
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (1, '111111', 'Fernando Rodrigues de Almeida Júnior', '2000-01-01', '2007-01-01', 3, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (2, '111112', 'Ricardo Pires dos Santos', '1890-01-10', '2007-01-01', 4, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (3, '111113', 'Wendley Sousa da Silva', '1890-01-10', '2007-01-01', 5, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (4, '111114', 'Jacques Antonio Cavalcante Maciel', '1990-01-10', '2010-01-01', 6, 2);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (5, '111115', 'José Roberto Viana Silva', '1990-01-10', '2010-01-01', 7, 2);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (6, '111116', 'Erick Aguiar Donato', '2000-01-01', '2007-01-01', 8, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (7, '111117', 'Jarbas Joaci de Mesquits Sa Júnior', '2000-01-01', '2007-01-01', 12, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (8, '111118', 'Evilásio Costa Júnior', '1980-05-15', '2015-08-01', 14, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (9, '111119', 'Luis Eduardo Araripe', '1945-09-02', '2007-08-01', 15, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (10, '111120', 'José Valdenir Silveira', '2004-06-26', '2007-08-01', 16, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (11, '111121', 'Rui Facundo Vigelis', '1980-05-15', '2007-08-01', 17, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (12, '111122', 'Nilena Brito Maciel Dias', '1980-05-15', '2007-08-01', 18, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (13, '111123', 'Rômulo Nunes de Carvalho Almeida', '1980-05-15', '2007-08-01', 19, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (14, '111124', 'Rosana Maria Alves Saboya', '1980-05-15', '2007-08-01', 20, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (15, '111125', 'Juan Carlos Peqquena Suni', '1980-05-15', '2007-08-01', 21, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (16, '111126', 'José Cláudio do Nascimento', '1980-05-15', '2007-08-01', 22, 1);
-INSERT INTO professor (id, siape, full_name, dataNascimento, dataIngresso, usuario_id, departamento_id)
+INSERT INTO professor (id, siape, full_name, data_nascimento, data_ingresso, usuario_id, departamento_id)
     VALUES (17, '111127', 'Euclimar Passos da Silva', '1980-05-15', '2007-08-01', 23, 1);
 
 -- Emails e Telefones dos professores

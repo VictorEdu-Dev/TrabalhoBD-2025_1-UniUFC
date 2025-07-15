@@ -39,8 +39,8 @@ CREATE TABLE IF NOT EXISTS professor (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     siape VARCHAR(10) NOT NULL UNIQUE,
     full_name VARCHAR(200),
-    dataNascimento DATETIME,
-    dataIngresso DATETIME,
+    data_nascimento DATETIME,
+    data_ingresso DATETIME,
     usuario_id BIGINT NOT NULL,
     departamento_id BIGINT,
     version TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -114,22 +114,22 @@ ALTER TABLE disciplina_has_professores
     ADD CONSTRAINT fk_professor_has_disciplina_professor FOREIGN KEY (professor_id) REFERENCES professor(id),
     ADD CONSTRAINT fk_professor_has_disciplina_disciplina FOREIGN KEY (disciplina_id) REFERENCES disciplina(id);
 
-DELIMITER !
-CREATE TRIGGER trg_disciplina_has_professores
-    BEFORE INSERT ON disciplina_has_professores
-    FOR EACH ROW
-BEGIN
-    DECLARE v_count INT;
-
-    SELECT COUNT(*) INTO v_count
-    FROM disciplina_has_professores
-    WHERE disciplina_id = NEW.disciplina_id;
-    IF v_count >= 2 THEN
-        SIGNAL SQLSTATE '45000'
-            SET MESSAGE_TEXT = 'Já há dois professores associados a esta disciplina.';
-    END IF;
-END!
-DELIMITER ;
+# DELIMITER !
+# CREATE TRIGGER trg_disciplina_has_professores
+#     BEFORE INSERT ON disciplina_has_professores
+#     FOR EACH ROW
+# BEGIN
+#     DECLARE v_count INT;
+#
+#     SELECT COUNT(*) INTO v_count
+#     FROM disciplina_has_professores
+#     WHERE disciplina_id = NEW.disciplina_id;
+#     IF v_count >= 2 THEN
+#         SIGNAL SQLSTATE '45000'
+#             SET MESSAGE_TEXT = 'Já há dois professores associados a esta disciplina.';
+#     END IF;
+# END!
+# DELIMITER ;
 
 -- Cria aluno
 CREATE TABLE IF NOT EXISTS alunos (
