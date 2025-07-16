@@ -11,8 +11,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity(name = "aluno")
-@Table(name = "alunos")
+@Entity(name = "alunos")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_aluno", discriminatorType = DiscriminatorType.STRING)
 public class Aluno extends CommonData {
