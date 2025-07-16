@@ -2,7 +2,6 @@ package org.equipe_9.uniufc.domain.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.equipe_9.uniufc.domain.CommonData;
 
 @ToString
 @Getter
