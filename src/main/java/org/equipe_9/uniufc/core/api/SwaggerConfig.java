@@ -63,8 +63,7 @@ public class SwaggerConfig {
     public GroupedOpenApi apiActivityGroup() {
         return GroupedOpenApi.builder()
                 .group("Access API")
-                .pathsToMatch("/api/v1/uniufc/**",
-                        "/api/v1/uniufc/**/**")
+                .pathsToMatch("/uniufc/**")
                 .packagesToScan("org.equipe_9.uniufc.domain")
                 .build();
     }
