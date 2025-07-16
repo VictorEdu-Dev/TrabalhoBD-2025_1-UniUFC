@@ -1,5 +1,6 @@
 package org.equipe_9.uniufc.domain.service;
 
+import org.equipe_9.uniufc.domain.exception.NullValueException;
 import org.equipe_9.uniufc.domain.model.AlunoGraduacao;
 import org.equipe_9.uniufc.domain.model.Disciplina;
 import org.equipe_9.uniufc.domain.model.dto.AlunoGraduacaoDTO;
@@ -50,25 +51,25 @@ public class AlunoQueryService {
 
     @Transactional
     public List<AGDisciplinasDTO> getDisciciplinasByMat(String matricula) {
-        if (matricula == null) throw new IllegalArgumentException("Matricula cannot be null.");
+        if (matricula == null) throw new NullValueException("Matricula cannot be null.");
         return alunoDAO.getDisciplinasByMatricula(matricula);
     }
 
     @Transactional
     public List<DisciplinaMiniatureDTO> getDisciplinasConcluidasByMat(String matricula) {
-        if (matricula == null) throw new IllegalArgumentException("Matricula cannot be null.");
+        if (matricula == null) throw new NullValueException("Matricula cannot be null.");
         return alunoDAO.getDisciplinasConcluidasByMatricula(matricula);
     }
 
     @Transactional
     public CursoAlunoDTO getCursoByMat(String matricula) {
-        if (matricula == null) throw new IllegalArgumentException("Matricula cannot be null.");
-        return alunoDAO.getCursoByMatricula(matricula).orElseThrow(() -> new IllegalArgumentException("Curso não encontrado para a matrícula informada."));
+        if (matricula == null) throw new NullValueException("Matricula cannot be null.");
+        return alunoDAO.getCursoByMatricula(matricula).orElse(null);
     }
 
     @Transactional
     public List<AlunoInfoDTO> getAlunoInfo(String matricula) {
-        if (matricula == null) throw new IllegalArgumentException("Matricula cannot be null.");
+        if (matricula == null) throw new NullValueException("Matricula cannot be null.");
 
         List<AlunoInfoNonDistinctDTO> lista = alunoDAO.findAlunoInfoByMatricula(matricula);
         if (lista.isEmpty()) return List.of();
