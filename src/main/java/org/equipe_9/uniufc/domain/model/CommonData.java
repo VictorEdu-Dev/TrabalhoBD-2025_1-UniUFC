@@ -1,4 +1,4 @@
-package org.equipe_9.uniufc.domain;
+package org.equipe_9.uniufc.domain.model;
 
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
