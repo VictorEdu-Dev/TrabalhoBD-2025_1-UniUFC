@@ -14,4 +14,7 @@ public record ProfessorDTO(
         DepartamentoDTO departamento,
         UsuarioDTO usuario
 ) {
+    public record ProfessoresInfoDTO(
+            String nome
+    ) {}
 }
