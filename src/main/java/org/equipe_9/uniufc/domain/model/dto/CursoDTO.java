@@ -7,4 +7,7 @@ public record CursoDTO(
         Integer creditos,
         DepartamentoDTO departamento
 ) {
+    public record CursoInfoDTO(
+            String nome
+    ) {}
 }
