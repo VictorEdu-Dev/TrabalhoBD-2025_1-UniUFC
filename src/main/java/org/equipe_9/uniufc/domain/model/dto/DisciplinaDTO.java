@@ -20,4 +20,9 @@ public record DisciplinaDTO(
             BigDecimal mediaFinal,
             BigDecimal frequencia
     ) {}
+
+    public record DisciplinasInfoDTO(
+            String nome,
+            String codigo
+    ) {}
 }
