@@ -25,4 +25,13 @@ public record DisciplinaDTO(
             String nome,
             String codigo
     ) {}
+
+    public record AlunosMatriculadosDTO(
+            String nome
+    ) {}
+
+    public record DisciplinasPRDTO(
+            String nome,
+            String codigo
+    ) {}
 }
