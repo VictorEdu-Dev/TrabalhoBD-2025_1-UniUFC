@@ -50,4 +50,9 @@ public record AlunoGraduacaoDTO(
             String endereco,
             Set<TelefoneAlunoDTO> telefones
     ) {}
+
+    @Builder(toBuilder = true)
+    public record AlunoSimpleDTO(
+            String nome
+    ) {}
 }
