@@ -55,4 +55,10 @@ public record AlunoGraduacaoDTO(
     public record AlunoSimpleDTO(
             String nome
     ) {}
+
+    @Builder(toBuilder = true)
+    public record AlunoSimpleNMDTO(
+            String nome,
+            String matricula
+    ) {}
 }
