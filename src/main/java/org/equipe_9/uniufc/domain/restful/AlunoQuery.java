@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "Aluno", description = "Consultas relacionadas ao aluno")
+@Tag(name = "Alunos", description = "Consultas relacionadas aos alunos")
 @Validated
 @RestController
 @RequestMapping("/uniufc")
