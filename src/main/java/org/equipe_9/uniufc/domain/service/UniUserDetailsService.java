@@ -19,7 +19,7 @@ public class UniUserDetailsService implements UserDetailsService {
 
     @Override
     public UniUserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Usuario> user = userDAO.findByLogin(username);
+        Optional<Usuario> user = userDAO.findByUsername(username);
 
         UsuarioDTO userDTO = usuarioMapper.toDTO(user.orElseThrow(() ->
                 new UsernameNotFoundException("User not found with username: " + username)));
