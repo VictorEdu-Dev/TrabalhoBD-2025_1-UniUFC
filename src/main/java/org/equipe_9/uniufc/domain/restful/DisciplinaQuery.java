@@ -1,5 +1,6 @@
 package org.equipe_9.uniufc.domain.restful;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.equipe_9.uniufc.domain.service.DisciplinaQueryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Tag(name = "Disciplinas", description = "Consultas relacionadas às disciplinas")
 @RestController()
 @RequestMapping("/uniufc")
 public class DisciplinaQuery {
