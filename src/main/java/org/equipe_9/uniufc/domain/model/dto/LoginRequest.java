@@ -1,5 +1,6 @@
 package org.equipe_9.uniufc.domain.model.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -7,6 +8,7 @@ import lombok.Builder;
 
 @Builder(toBuilder = true)
 public record LoginRequest(
+        @Schema(description = "Usuário", example = "root")
         @NotBlank(message = "{user.username.notblank}")
         @Size(min = 3, max = 50, message = "{user.username.size}")
         @Pattern(
@@ -15,6 +17,7 @@ public record LoginRequest(
         )
         String username,
 
+        @Schema(description = "Senha", example = "root")
         @NotBlank(message = "{user.password.not.blank}")
         @Size(min = 6, message = "{user.password.size}")
         @Pattern(regexp = ".*[A-Z].*", message = "{user.password.pattern.uppercase}")
