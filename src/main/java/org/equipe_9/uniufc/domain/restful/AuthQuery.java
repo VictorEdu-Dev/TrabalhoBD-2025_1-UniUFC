@@ -18,12 +18,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "Autenticação", description = "Autenticação e autorização de usuários")
+@Tag(name = "Autenticação", description = "Autenticação e autorização de usuários. O acesso é permitido para usuários com as regras: ANONYMOUS.")
 @RestController
 @RequestMapping("/uniufc/auth")
 public class AuthQuery {
@@ -35,16 +32,18 @@ public class AuthQuery {
             summary = "Autenticar usuário",
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     required = true,
-                    content = @Content(
-                            mediaType = MediaType.APPLICATION_JSON_VALUE,
+                    content = { @Content(
                             schema = @Schema(implementation = LoginRequest.class),
                             examples = @ExampleObject(value = """
-                {
-                  "username": "victorepc",
-                  "password": "Vv_12345@"
-                }
-                """)
-                    )
+                            {
+                              "username": "victorepc",
+                              "password": "Vv_12345@"
+                            }
+                            """)),
+                            @Content(
+                                    mediaType = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
+                                    schema = @Schema(implementation = LoginRequest.class)
+                            )}
             ),
             responses = {
                     @ApiResponse(responseCode = "200", description = "Token gerado com sucesso"),
@@ -53,8 +52,11 @@ public class AuthQuery {
             security = @SecurityRequirement(name = "")
     )
 
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest login) {
+    @PostMapping(
+            value = "/login",
+            produces = {MediaType.APPLICATION_JSON_VALUE},
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+    public ResponseEntity<?> login(@RequestBody @ModelAttribute LoginRequest login) {
         TokenInfoDTO token = authCmdService.getToken(login, authManager, jwtService);
         return ResponseEntity
                 .status(HttpStatus.OK)
