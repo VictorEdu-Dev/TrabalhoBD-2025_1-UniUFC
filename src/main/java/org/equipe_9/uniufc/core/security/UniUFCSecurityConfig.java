@@ -62,14 +62,14 @@ public class UniUFCSecurityConfig {
                         ).permitAll()
 
                         .requestMatchers(
-                                "/uniufc/professor-alunos",
-                                "/uniufc/professor-disciplinas",
                                 "/uniufc/cursos-dep",
                                 "/uniufc/departamento-info"
                         ).hasAnyRole(Usuario.Regra.DBA.name(), Usuario.Regra.SERVIDOR.name())
 
                         .requestMatchers(
+                                "/uniufc/professor-alunos",
                                 "/uniufc/alunos-matriculados",
+                                "/uniufc/professor-disciplinas",
                                 "/uniufc/pre-requisitos",
                                 "/uniufc/open-disciplinas"
                         ).hasAnyRole(Usuario.Regra.DBA.name(), Usuario.Regra.SERVIDOR.name(), Usuario.Regra.PROFESSOR.name())
@@ -114,7 +114,7 @@ public class UniUFCSecurityConfig {
         return (request, response, authException) -> {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.setContentType("application/json");
-            String json = "{\"error\": \"N\u00e3o autenticado\", \"message\": \"Token inv\u00e1lido, expirado ou ausente.\"}";
+            String json = "{\"error\": \"N\u00e3o autenticado\", \"message\": \"Credenciais incorretas, token inv\u00e1lido, expirado ou ausente.\"}";
             response.getWriter().write(json);
         };
     }
