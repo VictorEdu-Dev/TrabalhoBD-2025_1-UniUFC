@@ -7,7 +7,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import org.equipe_9.uniufc.domain.model.dto.AlunoGraduacaoDTO;
 import org.equipe_9.uniufc.domain.model.dto.DisciplinaDTO;
@@ -19,7 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "Alunos", description = "Consultas relacionadas aos alunos")
+@Tag(name = "Alunos", description = "Consultas relacionadas aos alunos. Acesso permitido para usuários com uma das seguintes permissões: DBA, SERVIDOR, PROFESSOR, ALUNO.")
 @Validated
 @RestController
 @RequestMapping("/uniufc")
@@ -39,8 +39,9 @@ public class AlunoQuery {
     @GetMapping(value = "/disciplinas-aluno", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getDisciplinasByMat(
             @Parameter(description = "Matrícula do aluno", required = true)
-            @ParameterObject
             @ModelAttribute
+            @ParameterObject
+            @Valid
             MatriculaDTO matricula) {
         return ResponseEntity.ok(alunoQueryService.getDisciciplinasByMat(matricula.mat));
     }
@@ -57,8 +58,9 @@ public class AlunoQuery {
     @GetMapping(value = "/disciplinas-concluidas", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getDisciplinasConcluidasByMat(
             @Parameter(description = "Matrícula do aluno", required = true)
-            @ParameterObject
             @ModelAttribute
+            @ParameterObject
+            @Valid
             MatriculaDTO matricula) {
         return ResponseEntity.ok(alunoQueryService.getDisciplinasConcluidasByMat(matricula.mat));
     }
@@ -75,8 +77,9 @@ public class AlunoQuery {
     @GetMapping(value = "/info-aluno", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getAlunoInfoByMat(
             @Parameter(description = "Matrícula do aluno", required = true)
-            @ParameterObject
             @ModelAttribute
+            @ParameterObject
+            @Valid
             MatriculaDTO matricula) {
         return ResponseEntity.ok(alunoQueryService.getAlunoInfo(matricula.mat));
     }
@@ -93,8 +96,9 @@ public class AlunoQuery {
     @GetMapping(value = "/curso-aluno", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> getCursoalunoByMat(
             @Parameter(description = "Matrícula do aluno", required = true)
-            @ParameterObject
             @ModelAttribute
+            @ParameterObject
+            @Valid
             MatriculaDTO matricula) {
         return ResponseEntity.ok(alunoQueryService.getCursoByMat(matricula.mat));
     }
@@ -105,7 +109,11 @@ public class AlunoQuery {
     }
 
     public record MatriculaDTO(
-            @NotBlank(message = "Matrícula não pode ser vazia")
-            @Pattern(regexp = "^[0-9]{6}$", message = "Matrícula deve conter exatamente 6 dígitos numéricos")
+            @Schema(
+                    description = "Matrícula do aluno com exatamente 6 dígitos",
+                    example = "171666",
+                    pattern = "^[0-9]{6}$"
+            )
+            @Pattern(regexp = "^[0-9]{6}$", message = "A matrícula deve ter exatamente 6 dígitos numéricos")
             String mat) {}
 }
