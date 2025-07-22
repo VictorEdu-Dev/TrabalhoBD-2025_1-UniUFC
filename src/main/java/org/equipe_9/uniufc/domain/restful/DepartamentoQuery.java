@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Departamentos", description = "Consultas relacionadas aos departamentos")
+@Tag(name = "Departamentos", description = "Consultas relacionadas aos departamentos. Acesso permitido para usuários com as regras: DBA, SERVIDOR.")
 @Validated
 @RestController
 @RequestMapping("/uniufc")
