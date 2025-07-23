@@ -47,7 +47,7 @@ public class Professor extends CommonData {
     private Set<String> telefones = new HashSet<>();
 
     @ToString.Exclude
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
