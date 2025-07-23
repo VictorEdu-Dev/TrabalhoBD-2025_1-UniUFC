@@ -8,6 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CursoDAO extends CrudRepository<Curso, Long> {
     @Query(
@@ -59,4 +60,6 @@ public interface CursoDAO extends CrudRepository<Curso, Long> {
                     ")",
             nativeQuery = true)
     List<AlunoSimpleDTO>  findAlunosCursoOp(@Param("nomeCurso") String nomeCurso);
+
+    Optional<Curso> findByCodigo(String codigo);
 }
