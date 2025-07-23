@@ -44,4 +44,5 @@ public interface ProfessorDAO extends CrudRepository<Professor, Long> {
     Optional<ProfessoresDisciplinasInfoDTO> findTotalCreditos(@Param("identificador") String orientador);
 
 
+    Professor findByUsuarioId(Long userIdToDelete);
 }
