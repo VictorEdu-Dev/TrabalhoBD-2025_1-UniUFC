@@ -9,7 +9,6 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "aluno_pos_graduacao")
