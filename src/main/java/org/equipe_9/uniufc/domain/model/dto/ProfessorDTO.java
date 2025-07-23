@@ -3,6 +3,7 @@ package org.equipe_9.uniufc.domain.model.dto;
 import lombok.Builder;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -42,5 +43,18 @@ public record ProfessorDTO(
             ) {
             }
         }
+    }
+
+    @Builder(toBuilder = true)
+    public record ProfessorRegisterDTO(
+            UsuarioDTO.UsuarioRegisterDTO usuario,
+            String siape,
+            String nomeCompleto,
+            LocalDate dataNascimento,
+            LocalDate dataIngresso,
+            Set<String> emails,
+            Set<String> telefones,
+            Long departamentoCodigo
+    ) {
     }
 }
