@@ -21,7 +21,6 @@ public class AuthUserCmdService {
 
     @Transactional
     public UsuarioDTO registerUser(UsuarioDTO.UsuarioRegisterDTO registrationDto, Usuario usuario) {
-        checkIfUserExists(usuario);
         Usuario newUser = Usuario
                 .builder()
                 .login(registrationDto.login())
@@ -43,7 +42,6 @@ public class AuthUserCmdService {
 
     @Transactional
     public ProfessorDTO.ProfessorRegisterDTO registerProfessor(ProfessorDTO.ProfessorRegisterDTO registrationDto,Usuario usuario) {
-        checkIfUserExists(usuario);
         Usuario newUser = Usuario
                 .builder()
                 .login(registrationDto.usuario().login())
@@ -90,7 +88,6 @@ public class AuthUserCmdService {
 
     @Transactional
     public AlunoDTO.AlunoRegisterDTO registerAluno(AlunoDTO.AlunoRegisterDTO registrationDto, Usuario usuario) {
-        checkIfUserExists(usuario);
         Usuario newUser = Usuario
                 .builder()
                 .login(registrationDto.usuario().login())
@@ -148,7 +145,6 @@ public class AuthUserCmdService {
 
     @Transactional
     public UsuarioDTO updateProfile(UsuarioDTO.UsuarioRegisterDTO profileDto, Usuario usuario) {
-        checkIfUserNotExists(usuario);
         Usuario existingUser = usuarioDAO.findById(usuario.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado com ID: " + usuario.getId()));
 
@@ -169,7 +165,6 @@ public class AuthUserCmdService {
 
     @Transactional
     public ProfessorDTO.ProfessorRegisterDTO updateProfileProfessor(ProfessorDTO.ProfessorRegisterDTO profileDto, Usuario usuario) {
-        checkIfUserNotExists(usuario);
 
         Departamento departamento = departamentoDAO.findById(profileDto.departamentoCodigo())
                 .orElseThrow(() -> new ResourceNotFoundException("Departamento não encontrado com o código: " + profileDto.departamentoCodigo()));
@@ -210,8 +205,6 @@ public class AuthUserCmdService {
 
     @Transactional
     public AlunoDTO.AlunoRegisterDTO updateProfileAluno(AlunoDTO.AlunoRegisterDTO profileDto, Usuario usuario) {
-        checkIfUserNotExists(usuario);
-
         Curso curso = cursoDAO.findByCodigo(profileDto.cursoNomeCodigo())
                 .orElseThrow(() -> new ResourceNotFoundException("Curso não encontrado com o código: " + profileDto.cursoNomeCodigo()));
 
