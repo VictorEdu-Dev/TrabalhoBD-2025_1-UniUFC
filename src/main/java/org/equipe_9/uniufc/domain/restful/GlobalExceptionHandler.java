@@ -1,6 +1,7 @@
 package org.equipe_9.uniufc.domain.restful;
 
 import jakarta.validation.ConstraintViolationException;
+import org.equipe_9.uniufc.domain.exception.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -36,6 +37,12 @@ public class GlobalExceptionHandler {
                 .map(e -> e.getField() + ": " + e.getDefaultMessage())
                 .toList();
         return ResponseEntity.badRequest().body(Map.of("errors", errors));
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public  ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException ex) {
+        List<String> errors = List.of(ex.getMessage());
+        return ResponseEntity.status(404).body(Map.of("errors", errors));
     }
 }
 
