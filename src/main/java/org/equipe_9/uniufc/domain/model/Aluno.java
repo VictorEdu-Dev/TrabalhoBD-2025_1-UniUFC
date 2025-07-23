@@ -7,12 +7,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-
 @Getter
 @Setter
 @Entity(name = "alunos")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "tipo_aluno", discriminatorType = DiscriminatorType.STRING)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Aluno extends CommonData {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +47,7 @@ public class Aluno extends CommonData {
             joinColumns = @JoinColumn(name = "aluno_id"))
     private Set<TelefoneAluno> telefones = new HashSet<>();
 
+    @Builder
     @Getter
     @Setter
     @NoArgsConstructor
