@@ -11,7 +11,6 @@ import java.util.Set;
 @Setter
 @Entity(name = "alunos")
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "tipo_aluno", discriminatorType = DiscriminatorType.STRING)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Aluno extends CommonData {
@@ -34,7 +33,7 @@ public class Aluno extends CommonData {
     private Curso curso;
 
     @ToString.Exclude
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 
