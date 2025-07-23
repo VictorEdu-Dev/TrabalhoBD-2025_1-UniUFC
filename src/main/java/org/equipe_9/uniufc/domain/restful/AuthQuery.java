@@ -32,14 +32,7 @@ public class AuthQuery {
             summary = "Autenticar usuário",
             requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
                     required = true,
-                    content = { @Content(
-                            schema = @Schema(implementation = LoginRequest.class),
-                            examples = @ExampleObject(value = """
-                            {
-                              "username": "victorepc",
-                              "password": "Vv_12345@"
-                            }
-                            """)),
+                    content = {
                             @Content(
                                     mediaType = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
                                     schema = @Schema(implementation = LoginRequest.class)
@@ -55,7 +48,7 @@ public class AuthQuery {
     @PostMapping(
             value = "/login",
             produces = {MediaType.APPLICATION_JSON_VALUE},
-            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_FORM_URLENCODED_VALUE})
+            consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE})
     public ResponseEntity<?> login(@RequestBody @ModelAttribute LoginRequest login) {
         TokenInfoDTO token = authCmdService.getToken(login, authManager, jwtService);
         return ResponseEntity
