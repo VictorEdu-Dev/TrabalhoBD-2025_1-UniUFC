@@ -75,13 +75,13 @@ public class UniUFCSecurityConfig {
 
                         .requestMatchers(
                                 "/uniufc/professor-alunos",
-                                "/uniufc/alunos-matriculados",
-                                "/uniufc/professor-disciplinas",
-                                "/uniufc/pre-requisitos",
-                                "/uniufc/open-disciplinas"
+                                "/uniufc/professor-disciplinas"
                         ).hasAnyRole(Usuario.Regra.DBA.name(), Usuario.Regra.SERVIDOR.name(), Usuario.Regra.PROFESSOR.name())
 
                         .requestMatchers(
+                                "/uniufc/pre-requisitos",
+                                "/uniufc/open-disciplinas",
+                                "/uniufc/alunos-matriculados",
                                 "/uniufc/info-aluno",
                                 "/uniufc/disciplinas-concluidas",
                                 "/uniufc/disciplinas-aluno",
