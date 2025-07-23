@@ -39,4 +39,6 @@ public interface AlunoDAO extends CrudRepository<AlunoGraduacao, Long> {
             "LEFT JOIN telefones_aluno AS t ON t.aluno_id = a.id " +
             "WHERE a.matricula = :matricula", nativeQuery = true)
     List<AlunoInfoNonDistinctDTO> findAlunoInfoByMatricula(@Param("matricula") String matricula);
+
+    AlunoGraduacao findByUsuarioId(Long userIdToDelete);
 }
