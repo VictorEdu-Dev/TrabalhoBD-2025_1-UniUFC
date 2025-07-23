@@ -62,6 +62,13 @@ public class UniUFCSecurityConfig {
                         ).permitAll()
 
                         .requestMatchers(
+                                "/uniufc/auth/admin/user/**",
+                                "/uniufc/auth/register",
+                                "/uniufc/auth/register-professor",
+                                "/uniufc/auth/register-aluno"
+                        ).hasAnyRole(Usuario.Regra.DBA.name())
+
+                        .requestMatchers(
                                 "/uniufc/cursos-dep",
                                 "/uniufc/departamento-info"
                         ).hasAnyRole(Usuario.Regra.DBA.name(), Usuario.Regra.SERVIDOR.name())
@@ -78,7 +85,10 @@ public class UniUFCSecurityConfig {
                                 "/uniufc/info-aluno",
                                 "/uniufc/disciplinas-concluidas",
                                 "/uniufc/disciplinas-aluno",
-                                "/uniufc/curso-aluno"
+                                "/uniufc/curso-aluno",
+                                "/uniufc/auth/change-profile",
+                                "/uniufc/auth/change-profile-professor",
+                                "/uniufc/auth/change-profile-aluno"
                         ).hasAnyRole(Usuario.Regra.DBA.name(), Usuario.Regra.SERVIDOR.name(), Usuario.Regra.PROFESSOR.name(), Usuario.Regra.ALUNO.name())
 
                         .requestMatchers(
