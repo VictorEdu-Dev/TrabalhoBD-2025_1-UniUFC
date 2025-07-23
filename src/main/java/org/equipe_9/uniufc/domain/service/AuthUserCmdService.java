@@ -243,6 +243,17 @@ public class AuthUserCmdService {
 
     @Transactional
     public void deleteUser(Long userIdToDelete) {
+        Usuario u = usuarioDAO.findById(userIdToDelete)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado com ID: " + userIdToDelete));
+        AlunoGraduacao a = alunoDAO.findByUsuarioId(userIdToDelete);
+        if (a != null) {
+            alunoDAO.delete(a);
+        }
+
+        Professor p = professorDAO.findByUsuarioId(userIdToDelete);
+        if (p != null) {
+            professorDAO.delete(p);
+        }
         usuarioDAO.deleteById(userIdToDelete);
     }
 
